@@ -33,6 +33,7 @@ public class Traitement {
 			ResultSet generatedKeys = stmt.getGeneratedKeys();
 			generatedKeys.next();
 			b.setId(generatedKeys.getInt("id"));
+			generatedKeys.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -40,7 +41,8 @@ public class Traitement {
 			if (stmt != null) {
 				try {
 					stmt.close();
-				} catch (SQLException e) {
+				} 
+				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -67,6 +69,7 @@ public class Traitement {
 			ResultSet generatedKeys = stmt.getGeneratedKeys();
 			generatedKeys.next();
 			c.setId(generatedKeys.getInt("id"));
+			generatedKeys.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -99,15 +102,13 @@ public class Traitement {
 			stmt = conn.createStatement();
 
 			String sql = "SELECT title, author FROM book INNER JOIN achete ON book.id = achete.id_book WHERE achete.id_client = '"+c.getId()+"'";
-			
-
-			// System.out.println(sql);
 
 			ResultSet result = stmt.executeQuery(sql);
 
 			while (result.next()) {
 				myBooks.add(new Book(result.getString("title"), result.getString("author")));
 			}
+			result.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -143,14 +144,13 @@ public class Traitement {
 					+ "INNER JOIN achete ON client.id = achete.id_client "
 					+ "WHERE id_book = '"+b.getId()+"'";
 
-			 //System.out.println(sql);
-
 			ResultSet result = stmt.executeQuery(sql);
 
 			while (result.next()) {
 				myClients.add(new Client(result.getString("lastname"), result.getString("firstname"),
 						result.getString("gender"), result.getInt("favoritebook")));
 			}
+			result.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
