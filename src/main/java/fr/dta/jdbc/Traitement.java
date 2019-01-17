@@ -9,15 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Traitement {
-
+	
 	String url = "jdbc:postgresql://localhost:5432/jdbc";
 	
-	public void addBook(Book b) { // AJOUT DE BOOK DANS LA BASE
-		Connection conn = null;
-		Statement stmt = null;
-
-		try {
+	Connection conn = null;
+	Statement stmt = null;
+	
+	public Traitement() {
+		 try {
 			conn = DriverManager.getConnection(url, "benny", "benny1234");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void addBook(Book b) { // AJOUT DE BOOK DANS LA BASE
+		try {			
 			stmt = conn.createStatement();
 			stmt.executeUpdate(
 					"INSERT INTO book (title, author) VALUES ('" + b.getTitre() + "', '" + b.getAuteur() + "')",Statement.RETURN_GENERATED_KEYS);
@@ -49,11 +58,8 @@ public class Traitement {
 
 	public void addClient(Client c) { // AJOUT DE CLIENT DANS LA BASE
 
-		Connection conn = null;
-		Statement stmt = null;
-
+		
 		try {
-			conn = DriverManager.getConnection(url, "benny", "benny1234");
 			stmt = conn.createStatement();
 			stmt.executeUpdate("INSERT INTO client (lastname, firstname, gender, favoritebook) " + "VALUES ('"
 					+ c.getLastname() + "', '" + c.getFirstname() + "', '" + c.getGender() + "', '"
@@ -88,11 +94,8 @@ public class Traitement {
 
 		List<Book> myBooks = new ArrayList<Book>();
 
-		Connection conn = null;
-		Statement stmt = null;
 
 		try {
-			conn = DriverManager.getConnection(url, "benny", "benny1234");
 			stmt = conn.createStatement();
 
 			String sql = "SELECT title, author FROM book INNER JOIN achete ON book.id = achete.id_book WHERE achete.id_client = '"+c.getId()+"'";
@@ -132,11 +135,8 @@ public class Traitement {
 
 		List<Client> myClients = new ArrayList<Client>();
 
-		Connection conn = null;
-		Statement stmt = null;
 
 		try {
-			conn = DriverManager.getConnection(url, "benny", "benny1234");
 			stmt = conn.createStatement();
 
 			String sql = "SELECT firstname, lastname, gender, favoritebook " + "FROM client "
