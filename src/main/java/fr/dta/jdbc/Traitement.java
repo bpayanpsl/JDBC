@@ -10,9 +10,9 @@ import java.util.List;
 
 public class Traitement {
 
+	String url = "jdbc:postgresql://localhost:5432/jdbc";
+	
 	public void addBook(Book b) { // AJOUT DE BOOK DANS LA BASE
-		String url = "jdbc:postgresql://localhost:5432/jdbc";
-
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -48,7 +48,6 @@ public class Traitement {
 	}
 
 	public void addClient(Client c) { // AJOUT DE CLIENT DANS LA BASE
-		String url = "jdbc:postgresql://localhost:5432/jdbc";
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -88,8 +87,6 @@ public class Traitement {
 	public List<Book> livreAchete(Client c) {
 
 		List<Book> myBooks = new ArrayList<Book>();
-
-		String url = "jdbc:postgresql://localhost:5432/jdbc";
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -134,8 +131,6 @@ public class Traitement {
 	public List<Client> ClientLivre(Book b) {
 
 		List<Client> myClients = new ArrayList<Client>();
-
-		String url = "jdbc:postgresql://localhost:5432/jdbc";
 
 		Connection conn = null;
 		Statement stmt = null;
