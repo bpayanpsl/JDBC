@@ -42,19 +42,19 @@ public class Traitement {
 
 	public void addClient(Client c) { // AJOUT DE CLIENT DANS LA BASE
 
-		try (Statement stmt = conn.createStatement()){			
+		try (Statement stmt = conn.createStatement()) {
 			stmt.executeUpdate(
 					"INSERT INTO client (lastname, firstname, gender, favoritebook) " + "VALUES ('" + c.getLastname()
 							+ "', '" + c.getFirstname() + "', '" + c.getGender() + "', '" + c.getFavoriteBook() + "');",
 					Statement.RETURN_GENERATED_KEYS);
-			try (ResultSet generatedKeys = stmt.getGeneratedKeys()){	
-			generatedKeys.next();
-			c.setId(generatedKeys.getInt("id"));
-			generatedKeys.close();
+			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+				generatedKeys.next();
+				c.setId(generatedKeys.getInt("id"));
+				generatedKeys.close();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} 
+		}
 	}
 
 	// Quels livres ont été achetés par un certain client
@@ -62,38 +62,21 @@ public class Traitement {
 
 		List<Book> myBooks = new ArrayList<Book>();
 
-		try {
-			stmt = conn.createStatement();
-
+		try (Statement stmt = conn.createStatement()) {
 			String sql = "SELECT title, author FROM book INNER JOIN achete ON book.id = achete.id_book WHERE achete.id_client = '"
 					+ c.getId() + "'";
 
-			ResultSet result = stmt.executeQuery(sql);
+			try (ResultSet result = stmt.executeQuery(sql)) {
 
-			while (result.next()) {
-				myBooks.add(new Book(result.getString("title"), result.getString("author")));
+				while (result.next()) {
+					myBooks.add(new Book(result.getString("title"), result.getString("author")));
+				}
+				result.close();
 			}
-			result.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} finally {
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
+
 		return myBooks;
 	}
 
@@ -101,38 +84,21 @@ public class Traitement {
 
 		List<Client> myClients = new ArrayList<Client>();
 
-		try {
-			stmt = conn.createStatement();
+		try (Statement stmt = conn.createStatement()) {
 
 			String sql = "SELECT firstname, lastname, gender, favoritebook " + "FROM client "
 					+ "INNER JOIN achete ON client.id = achete.id_client " + "WHERE id_book = '" + b.getId() + "'";
 
-			ResultSet result = stmt.executeQuery(sql);
+			try (ResultSet result = stmt.executeQuery(sql)) {
 
-			while (result.next()) {
-				myClients.add(new Client(result.getString("lastname"), result.getString("firstname"),
-						result.getString("gender"), result.getInt("favoritebook")));
+				while (result.next()) {
+					myClients.add(new Client(result.getString("lastname"), result.getString("firstname"),
+							result.getString("gender"), result.getInt("favoritebook")));
+				}
+				result.close();
 			}
-			result.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} finally {
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		return myClients;
 	}
