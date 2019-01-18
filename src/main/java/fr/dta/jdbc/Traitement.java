@@ -32,7 +32,6 @@ public class Traitement {
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				generatedKeys.next();
 				b.setId(generatedKeys.getInt("id"));
-				generatedKeys.close();
 			}
 
 		} catch (Exception e) {
@@ -50,7 +49,6 @@ public class Traitement {
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				generatedKeys.next();
 				c.setId(generatedKeys.getInt("id"));
-				generatedKeys.close();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -71,7 +69,6 @@ public class Traitement {
 				while (result.next()) {
 					myBooks.add(new Book(result.getString("title"), result.getString("author")));
 				}
-				result.close();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -95,7 +92,6 @@ public class Traitement {
 					myClients.add(new Client(result.getString("lastname"), result.getString("firstname"),
 							result.getString("gender"), result.getInt("favoritebook")));
 				}
-				result.close();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
