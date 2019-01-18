@@ -8,7 +8,6 @@ import java.sql.Statement;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		Traitement t1 = new Traitement();
 		Client c1 = new Client("Bernard", "Gerard", "M", 1);
@@ -50,7 +49,6 @@ public class Main {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -58,7 +56,6 @@ public class Main {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
