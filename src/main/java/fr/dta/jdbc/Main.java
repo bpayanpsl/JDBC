@@ -5,7 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import utils.MyUtils;
+
 public class Main {
+	
+	private static Logger LOG = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
 
@@ -43,7 +50,7 @@ public class Main {
 			stmt.executeUpdate("INSERT INTO achete (id_book, id_client) VALUES (1,3), (2,3);");
 			stmt.executeUpdate("INSERT INTO achete (id_book, id_client) VALUES (5,1), (5,2);");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LOG.trace(e.getMessage());
 		} finally {
 			if (stmt != null) {
 				try {
@@ -62,11 +69,11 @@ public class Main {
 		}
 
 		for (Book b : t1.livreAchete(c1)) {
-			System.out.println(b.toString());
+			LOG.trace(b.toString());
 		}
 
 		for (Client c : t1.clientLivre(b1)) {
-			System.out.println(c.toString());
+			LOG.trace(c.toString());
 		}
 	}
 }
