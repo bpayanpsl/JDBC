@@ -47,30 +47,14 @@ public class Traitement {
 					"INSERT INTO client (lastname, firstname, gender, favoritebook) " + "VALUES ('" + c.getLastname()
 							+ "', '" + c.getFirstname() + "', '" + c.getGender() + "', '" + c.getFavoriteBook() + "');",
 					Statement.RETURN_GENERATED_KEYS);
-			ResultSet generatedKeys = stmt.getGeneratedKeys();
+			try (ResultSet generatedKeys = stmt.getGeneratedKeys()){	
 			generatedKeys.next();
 			c.setId(generatedKeys.getInt("id"));
 			generatedKeys.close();
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} finally {
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
+		} 
 	}
 
 	// Quels livres ont été achetés par un certain client
