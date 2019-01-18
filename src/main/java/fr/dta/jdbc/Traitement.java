@@ -13,13 +13,12 @@ public class Traitement {
 	String url = "jdbc:postgresql://localhost:5432/jdbc";
 
 	Connection conn = null;
-	Statement stmt = null;
+
 
 	public Traitement() {
 		try {
 			conn = DriverManager.getConnection(url, "benny", "benny1234");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
