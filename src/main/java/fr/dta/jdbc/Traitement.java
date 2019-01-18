@@ -42,8 +42,7 @@ public class Traitement {
 
 	public void addClient(Client c) { // AJOUT DE CLIENT DANS LA BASE
 
-		try {
-			stmt = conn.createStatement();
+		try (Statement stmt = conn.createStatement()){			
 			stmt.executeUpdate(
 					"INSERT INTO client (lastname, firstname, gender, favoritebook) " + "VALUES ('" + c.getLastname()
 							+ "', '" + c.getFirstname() + "', '" + c.getGender() + "', '" + c.getFavoriteBook() + "');",
