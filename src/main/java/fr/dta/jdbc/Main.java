@@ -65,7 +65,7 @@ public class Main {
 			System.out.println(b.toString());
 		}
 
-		for (Client c : t1.ClientLivre(b1)) {
+		for (Client c : t1.clientLivre(b1)) {
 			System.out.println(c.toString());
 		}
 	}

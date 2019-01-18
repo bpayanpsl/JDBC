@@ -57,7 +57,7 @@ public class Traitement {
 	// Quels livres ont été achetés par un certain client
 	public List<Book> livreAchete(Client c) {
 
-		List<Book> myBooks = new ArrayList<Book>();
+		List<Book> myBooks = new ArrayList<>();
 
 		try (Statement stmt = conn.createStatement()) {
 			String sql = "SELECT title, author FROM book INNER JOIN achete ON book.id = achete.id_book WHERE achete.id_client = '"
@@ -76,9 +76,9 @@ public class Traitement {
 		return myBooks;
 	}
 
-	public List<Client> ClientLivre(Book b) {
+	public List<Client> clientLivre(Book b) {
 
-		List<Client> myClients = new ArrayList<Client>();
+		List<Client> myClients = new ArrayList<>();
 
 		try (Statement stmt = conn.createStatement()) {
 
