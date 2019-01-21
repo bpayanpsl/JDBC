@@ -2,10 +2,10 @@ package fr.dta.jdbc;
 
 public class Client {
 
-	public String lastname;
-	public String firstname;
-	public String gender;
-	public int favoriteBook;
+	private String lastname;
+	private String firstname;
+	private String gender;
+	private int favoriteBook;
 	private Integer id;
 
 	public Integer getId() {
