@@ -8,8 +8,6 @@ import java.sql.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import utils.MyUtils;
-
 public class Main {
 	
 	private static Logger LOG = LoggerFactory.getLogger(Main.class);
