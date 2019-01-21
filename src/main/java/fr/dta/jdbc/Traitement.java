@@ -39,7 +39,7 @@ public class Traitement {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LOG.trace(e.getMessage());
 		}
 	}
 
@@ -55,7 +55,7 @@ public class Traitement {
 				c.setId(generatedKeys.getInt("id"));
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LOG.trace(e.getMessage());
 		}
 	}
 
@@ -75,7 +75,7 @@ public class Traitement {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LOG.trace(e.getMessage());
 		}
 
 		return myBooks;
@@ -98,7 +98,7 @@ public class Traitement {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LOG.trace(e.getMessage());
 		}
 		return myClients;
 	}
