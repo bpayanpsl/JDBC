@@ -54,14 +54,14 @@ public class Main {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					LOG.trace(e.getMessage());
 				}
 			}
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					LOG.trace(e.getMessage());
 				}
 			}
 		}
