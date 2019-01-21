@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class Traitement {
 
-	private static Logger LOG = LoggerFactory.getLogger(Main.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 	
 	String url = "jdbc:postgresql://localhost:5432/jdbc";
 

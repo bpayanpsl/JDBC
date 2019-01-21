@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
 	
-	private static Logger LOG = LoggerFactory.getLogger(Main.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
 
@@ -67,11 +67,11 @@ public class Main {
 		}
 
 		for (Book b : t1.livreAchete(c1)) {
-			LOG.trace(b.toString());
+			LOG.trace("Log this: {}", b);
 		}
 
 		for (Client c : t1.clientLivre(b1)) {
-			LOG.trace(c.toString());
+			LOG.info("Log this: {}", c);
 		}
 	}
 }
