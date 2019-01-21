@@ -8,8 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Traitement {
 
+	private static Logger LOG = LoggerFactory.getLogger(Main.class);
+	
 	String url = "jdbc:postgresql://localhost:5432/jdbc";
 
 	Connection conn = null;
@@ -19,7 +24,7 @@ public class Traitement {
 		try {
 			conn = DriverManager.getConnection(url, "benny", "benny1234");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.trace(e.getMessage());
 		}
 	}
 
