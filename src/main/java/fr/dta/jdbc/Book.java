@@ -2,8 +2,8 @@ package fr.dta.jdbc;
 
 public class Book {
 	
-	public String titre;
-	public String auteur;
+	private String titre;
+	private String auteur;
 	private Integer id;
 	
 	public Integer getId() {
