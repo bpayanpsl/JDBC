@@ -5,6 +5,7 @@ public class Client {
 	private String lastname;
 	private String firstname;
 	private String gender;
+	
 	private int favoriteBook;
 	private Integer id;
 
